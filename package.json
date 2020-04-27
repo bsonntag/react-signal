@@ -11,7 +11,7 @@
   "files": [
     "dist/*"
   ],
-  "repository": "git@github.com:bsonntag/react-listbox.git",
+  "repository": "git@github.com:bsonntag/react-signal.git",
   "author": "Benjamim Sonntag <benjamimsonntag@gmail.com>",
   "license": "MIT",
   "scripts": {
