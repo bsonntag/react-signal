@@ -49,6 +49,3 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
-
-# TernJS port file
-.tern-port

@@ -1,0 +1,4 @@
+!.*rc.js
+coverage
+dist
+node_modules
