@@ -2,6 +2,12 @@
 
 Send messages between components.
 
+<img
+  alt="react-signal logo"
+  src="https://raw.githubusercontent.com/bsonntag/react-signal/master/logo.svg"
+  width="300"
+/>
+
 ## Disclaimer
 
 You might not want to use this.
@@ -68,6 +74,10 @@ function App() {
 ## Contributing
 
 Please feel free to submit any issues or pull requests.
+
+## Acknowledgements
+
+Thank you [Francisco Morais](https://github.com/franciscomorais) for your huge help with the logo!
 
 ## License
 
