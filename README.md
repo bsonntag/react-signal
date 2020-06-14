@@ -4,7 +4,7 @@ Send messages between components.
 
 <img
   alt="react-signal logo"
-  src="https://raw.githubusercontent.com/bsonntag/react-signal/master/logo.svg"
+  src="https://raw.githubusercontent.com/bsonntag/react-signal/main/logo.svg"
   width="300"
 />
 
