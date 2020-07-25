@@ -17,7 +17,7 @@
   "scripts": {
     "build": "rm -rf dist && babel src --out-dir dist --ignore \"**/*.test.js\"",
     "format": "prettier --write \"./**/*.{js,json}\"",
-    "lint": "eslint .",
+    "lint": "eslint . && prettier --check \"./**/*.{js,json}\"",
     "test": "jest",
     "test:watch": "jest --watch --notify",
     "version": "npm run build && git add dist"
