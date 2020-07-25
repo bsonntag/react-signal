@@ -1,5 +1,7 @@
 # react-signal
 
+[![CircleCI build](https://circleci.com/gh/bsonntag/react-signal.svg?style=svg)](https://circleci.com/gh/bsonntag/react-signal)
+
 Send messages between components.
 
 <img
