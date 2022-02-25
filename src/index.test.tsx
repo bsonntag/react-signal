@@ -4,7 +4,7 @@ import { createSignal } from '.';
 
 describe('createSignal', () => {
   it('should publish a new value to the signal', () => {
-    const Signal = createSignal('foo');
+    const Signal = createSignal();
     const callback = jest.fn();
 
     function TestSubscriber() {
