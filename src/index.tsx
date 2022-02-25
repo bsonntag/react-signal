@@ -1,12 +1,20 @@
 import * as React from 'react';
 
+type SignalCallback = (value: unknown) => void;
+type PublishContext = (value: unknown) => void;
+type SubscribeContext = (callback: SignalCallback) => () => void;
+
 class Signal {
+  hasValue: boolean;
+  callbacks: Set<SignalCallback>;
+  value: unknown;
+
   constructor() {
     this.hasValue = false;
     this.callbacks = new Set();
   }
 
-  publish(value) {
+  publish(value: unknown) {
     this.hasValue = true;
     this.value = value;
     this.callbacks.forEach((callback) => {
@@ -14,7 +22,7 @@ class Signal {
     });
   }
 
-  subscribe(callback) {
+  subscribe(callback: SignalCallback) {
     this.callbacks.add(callback);
     if (this.hasValue) {
       callback(this.value);
@@ -27,15 +35,20 @@ class Signal {
 }
 
 export function createSignal() {
-  const SignalPublishContext = React.createContext();
-  const SignalSubscribeContext = React.createContext();
+  const SignalPublishContext = React.createContext<PublishContext>(
+    () => undefined
+  );
+  const SignalSubscribeContext = React.createContext<SubscribeContext>(
+    () => () => undefined
+  );
 
-  function SignalProvider({ children }) {
+  function SignalProvider({ children }: { children: React.ReactNode }) {
     const signalRef = React.useRef(new Signal());
-    const publish = React.useCallback((value) => {
+    const publish = React.useCallback((value: unknown) => {
       signalRef.current.publish(value);
     }, []);
-    const subscribe = React.useCallback((callback) => {
+
+    const subscribe = React.useCallback((callback: SignalCallback) => {
       const unsubscribe = signalRef.current.subscribe(callback);
       return () => unsubscribe();
     }, []);
@@ -53,7 +66,7 @@ export function createSignal() {
     return React.useContext(SignalPublishContext);
   }
 
-  function useSignalSubscription(callback) {
+  function useSignalSubscription(callback: SignalCallback) {
     const subscribe = React.useContext(SignalSubscribeContext);
     const callbackRef = React.useRef(callback);
 
@@ -62,9 +75,10 @@ export function createSignal() {
     });
 
     React.useEffect(() => {
-      const unsubscribe = subscribe((value) => {
+      const unsubscribe = subscribe((value: unknown) => {
         callbackRef.current(value);
       });
+
       return () => unsubscribe();
     }, [subscribe]);
   }
