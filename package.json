@@ -8,6 +8,7 @@
     "message"
   ],
   "main": "dist/index.js",
+  "types": "typings.d.ts",
   "files": [
     "dist/*"
   ],
